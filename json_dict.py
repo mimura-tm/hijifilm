@@ -1,12 +1,12 @@
-import jason
-import globe
+import json
+import glob
 import os
 
 
-def hiji_jsonload():
+def hiji_jsonload(jasondirname,):
     for ii in range():
         with open(json) as f:
-            df = jason.load(f)
+            df = json.load(f)
 
         bboxes = []
         char = []
@@ -25,20 +25,21 @@ def hiji_jsonload():
 
         bboxes.append([char,xmin,ymin,xmax,ymax,df["label"]])
 
-def hiji_jsonload2(jasondirname):
-    filename = sorted(globe.globe("*/{}/*.jason".format(jasondirname)))
+def hiji_jsonload2(jasondirname="dirname"):
+    #jason_dirname >> "/home/user/mimura/input/train_anns"
+
+    filename = sorted(glob.glob("{}/*.json".format(jasondirname)))
     bboxes = []
 
-    for ii in range():
-        with open(jason) as f:
-            df = jason.load(f)
+    for ii in range(len(filename)):
+        with open(filename[ii]) as f:
+            df = json.load(f)
 
         char = []
         xmin = []
         ymin = []
         xmax = []
         ymax = []
-        label = []
 
         for i in range(len(df["bboxes"])):
             char.append(df["bboxes"][i]["char"])
@@ -48,3 +49,5 @@ def hiji_jsonload2(jasondirname):
             ymax.append(df["bboxes"][i]["ymax"])
 
         bboxes.append([char,xmin,ymin,xmax,ymax,df["label"]])
+
+    return bboxes
